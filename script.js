@@ -1,97 +1,16 @@
-const canvas = document.getElementById('game');
-const ctx = canvas.getContext('2d');
-let score;
-let highscore;
-let player;
-let gravity;
-let obstacles;
-let gameSpeed;
-let keys = {};
+const canvas = document.querySelector('#game'); // We create a canvas variable and set it the same as the canvas element (javascript treats html elements as objects)
+const ctx = canvas.getContext('2d'); // getContext is telling the browser that the canvas that we are gonna draw on is going to be a 2d canvas. ctx is equal to a 2d context of the canvas, after that we could other methods like fillrect or drawimage
+let squareX = 20 // creating a var called squareX and gving it a value of 20. We.re going to use this to move the box left or right
+let animateid = 0 // creating a var called animateid and giving it a value of 0. Using to keep track of the ID of the animationloop
 
-// Event Listeners
-document.addEventListener('keydown', function (evt) {
-keys(evt.code) = true;
-});
-document.addEventListener('keyup', function (evt){
-keys [evt.code] = false;
-});
-
-class Player {
-    constructor (x, y, w, h, c) {
-this.x = x;
-this.y = y;
-this.w = w;
-this.h = h; 
-this.c = c;
-
-this.dy = 0;
-this.jumpForce = 15;
-this.originalHeight = h;
-this.grounded = false;
-this.jumpTimer = 0;
-}
-animate () {
-    //jump 
-    if (keys['Space'] || keys['KeyW']) {
-        this.Jump();
-        console.log('jump');
-    } else {
-        this.jumpTimer = 0;
-    }
-    this.y += this.dy;
-    //Gravity
-    if (this.y + this.h < canvas.height) {
-        this.dy += gravity;
-        this.grounded = false;
-    }else{
-        this.dy = 0;
-        this.grounded = true;
-        this.y = canvas.height - this.h;
-    }
+function animationloop(){ //declared a function and called it animationloop
+    animateid = window.requestAnimationFrame(animationloop)//starting animation loop with requestAniamtionFrame, request animationframe returns ID we are setting that id to the animate ID
+    ctx.clearRect(0,0, canvas.width, canvas.height) // erasing what we draw on the previous loop. 
     
-    
-    this.Draw();
+    console.log(animateid)
+    ctx.fillRect(squareX++, 20, 100, 50); // drawing a black square and moving one step to the right after every loop.
+    // if (animateid >= 200){
+    //     window.cancelAnimationFrame(animateid)
+    // }
 }
-Jump () {
- if (this.grounded && this.jumpTimer == 0) {
-     this.jumpTimer = 1;
-     this.dy = -this.jumpForce;
- } else if (this.jumpTimer > 0 && this.jumpTimer < 15)
- this.jumpTimer++;
- this.dy = -this.jumpForce -(this.jumpTimer / 50);
-}
-
-
-Draw () {
-    ctx.beginPath();
-    ctx.fillStyle = this.c;
-    ctx.fillRect(this.x, this.y, this.w, this.h);
-    ctx.closePath();
-}
-}
-
-
-function Start () {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    ctx.font ="20px sans-serif";
-
-    gameSpeed = 3;
-    gravity = 1;
-    score = 0;
-    highscore = 0;
-
-    player = new Player(25, canvas.height - 150, 50, 50, '#FF5858');
-
-    requestAnimationFrame(Update);
-}
-function Update () {
-    requestAnimationFrame(Update);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    player.animate(); 
-    player.x++;
-}
-
-Start();
+animationloop()//calling the function so the code inside of the function runs. 
