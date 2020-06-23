@@ -1,21 +1,52 @@
-const canvas = document.querySelector('#game'); // We create a canvas variable and set it the same as the canvas element (javascript treats html elements as objects)
-const ctx = canvas.getContext('2d'); // getContext is telling the browser that the canvas that we are gonna draw on is going to be a 2d canvas. ctx is equal to a 2d context of the canvas, after that we could other methods like fillrect or drawimage
-let squareX = 20 // creating a var called squareX and gving it a value of 20. We.re going to use this to move the box left or right
-let animateid = 0 // creating a var called animateid and giving it a value of 0. Using to keep track of the ID of the animationloop
-function jump () {
-    player.speed.Y = -2;
-}
-function animationloop(){ //declared a function and called it animationloop
-    animateid = window.requestAnimationFrame(animationloop)//starting animation loop with requestAniamtionFrame, request animationframe returns ID we are setting that id to the animate ID
-    ctx.clearRect(0,0, canvas.width, canvas.height) // erasing what we draw on the previous loop. 
-    
-    console.log(animateid)
-    ctx.fillRect(squareX++, 200, 100, 50); // drawing a black square and moving one step to the right after every loop.
-    // if (animateid >= 200){
-    //     window.cancelAnimationFrame(animateid)
-    // }
+//canvas.width = window.innerWidth
+let squareX = 20; // creating a var called squareX and gving it a value of 20. We.re going to use this to move the box left or right
+let animateid = 0; // creating a var called animateid and giving it a value of 0. Using to keep track of the ID of the animationloop
+let squareY = 350;
+let backgroundx = 0;
 
 
-animationloop()//calling the function so the code inside of the function runs. 
+console.log("hello")
+
+
+
+function animationloop() {
+ 
+  backgroundx--;
+ 
+
+  for (let i = 0; i < 5; i++) {
+    ctx.drawImage(background, backgroundx+i*canvas.width, 0, canvas.width, canvas.height);//draws background image 5 times
+  }
+  boxes.forEach(box => box.x-=3)//it moves all the boxes to the left
 }
-document.addEventListener('keydown', onkeydown, false); //adding an event listner to listen for any keys that are pressed
+function createBoxes(){
+    for (let i = 0; i < 5; i++) {// total number of platforms
+        let section = canvas.width*i
+        for (let j = 0; j < 2; j++) {
+
+            let box = {
+                x: section+(section/2)*j, //the number of platforms 
+                y: Math.random()*canvas.height,
+                width: 200,
+                height: 50
+
+            }
+            boxes.push(box)//adds a new platform(box)
+        }
+
+    }
+}
+var images = "https://opengameart.org/sites/default/files/background1-720.png";
+
+// boxes.push({
+//     x: 0,
+//     y: 0,
+//     width: 10,
+//     height: height
+// });
+
+let background = new Image(); //adding an image to the Canvas
+background.src =
+  "https://opengameart.org/sites/default/files/background1-720.png";
+
+createBoxes()
