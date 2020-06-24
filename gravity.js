@@ -1,7 +1,7 @@
-(function () {
-    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-    window.requestAnimationFrame = requestAnimationFrame;
-})();
+// (function () {
+//     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+//     window.requestAnimationFrame = requestAnimationFrame;
+// })();
 var canvas = document.getElementById("game"),
     ctx = canvas.getContext("2d"),
     width = window.innerWidth/1.5,
@@ -15,11 +15,14 @@ var canvas = document.getElementById("game"),
         velX: 0,
         velY: 0,
         jumping: false,
-        grounded: false
+        grounded: false,
+        image: new Image()
     },
     keys = [],
     friction = 0.8,
+    animationId = 0,
     gravity = 0.3;
+    player.image.src = "skatesprite.png"
 var boxes = [];
 // dimensions
 // boxes.push({

@@ -1,11 +1,11 @@
 //canvas.width = window.innerWidth
 let squareX = 20; // creating a var called squareX and gving it a value of 20. We.re going to use this to move the box left or right
 let animateid = 0; // creating a var called animateid and giving it a value of 0. Using to keep track of the ID of the animationloop
-let squareY = 350;
-let backgroundx = 0;
+let squareY = 350; // creating a var called squareY and giving it the value of 350. Using it to declare the y quardnent 
+let backgroundx = 0; // creating 
 
 
-console.log("hello")
+
 
 
 
@@ -25,7 +25,7 @@ function createBoxes(){
         for (let j = 0; j < 2; j++) {
 
             let box = {
-                x: section+(section/2)*j, //the number of platforms 
+                x: section+(section/5)*j, //the number of platforms 
                 y: Math.random()*canvas.height,
                 width: 200,
                 height: 50

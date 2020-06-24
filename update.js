@@ -52,6 +52,12 @@ function update() {
     ctx.fill();
     ctx.fillStyle = "red";
     ctx.fillRect(player.x, player.y, player.width, player.height);
-  
-    requestAnimationFrame(update);
+    ctx.drawImage(player.image, 0, 0, 160, 160, player.x, player.y, player.width, player.height) 
+    //if the Y of the charector is greter then the y of the canvas alert "GAME OVER"
+if(canvas.height<player.y){
+    cancelAnimationFrame(animationId)
+    alert("GAME OVER")
+    location.reload()
+}
+    animationId = requestAnimationFrame(update);
 }
