@@ -22,7 +22,7 @@ var canvas = document.getElementById("game"),
     friction = 0.8,
     animationId = 0,
     gravity = 0.3;
-    player.image.src = "skatesprite.png"
+    player.image.src = "sk.png"
 var boxes = [];
 // dimensions
 // boxes.push({
@@ -35,7 +35,7 @@ var boxes = [];
      x: 0,
     y: height - 2,
     width: width,
-   height: 50
+   height: 50,
 });
 // boxes.push({
 //     x: width - 10,
@@ -103,7 +103,32 @@ function colCheck(shapeA, shapeB) {
     }
     return colDir;
 }
+
+
+let songPlaying = false
+const audio = new Audio('lo.mp3');
+
 document.body.addEventListener("keydown", function (e) {
+
+    if (!songPlaying){// Will play only once. !false is equal to true.  
+        songPlaying = true;
+      
+        audio.crossOrigin =  'anonymous'
+var playPromise = audio.play();
+// In browsers that don't yet support this functionality,
+// playPromise won't be defined.
+if (playPromise !== undefined) {
+  playPromise.then(function() {
+     console.log('success')
+    // Automatic playback started!
+  }).catch(function(error) {
+     console.log(error)
+    // Automatic playback failed.
+    // Show a UI element to let the user manually start playback.
+  });
+}
+    }
+
     keys[e.keyCode] = true;
 });
 document.body.addEventListener("keyup", function (e) {
@@ -111,5 +136,10 @@ document.body.addEventListener("keyup", function (e) {
 });
 window.addEventListener("load", function () {
     update();
+   
 });
+
+
+
+
 

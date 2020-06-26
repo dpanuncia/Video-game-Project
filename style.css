@@ -1,12 +1,18 @@
 canvas{
     display: block;
     border: 1px solid black;
+    
 } 
 h1{
     color: rgb(82, 82, 82);
-    padding: 15px;
+    
 }
 body{
     background-color: rgb(109, 109, 255);
     overflow: hidden;
+    border-bottom-color: whitesmoke;
+    
 };
+h3, p{
+  text-align: right;
+}

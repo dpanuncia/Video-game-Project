@@ -1,7 +1,10 @@
+
 function update() {
     // check keys
     if (keys[38] || keys[32] || keys[87]) {
         // up arrow or space
+        
+        
         if (!player.jumping && player.grounded) {
             player.jumping = true;
             player.grounded = false;
@@ -32,6 +35,11 @@ function update() {
     ctx.beginPath();
     player.grounded = false;
     for (var i = 0; i < boxes.length; i++) {
+        if(backgrounCount < 1200) {
+            ctx.fillStyle='black'
+        } else {
+            ctx.fillStyle='purple'
+        }
         ctx.rect(boxes[i].x, boxes[i].y, boxes[i].width, boxes[i].height);
         var dir = colCheck(player, boxes[i]);
         if (dir === "l" || dir === "r") {
