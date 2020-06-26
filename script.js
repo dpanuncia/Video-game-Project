@@ -20,11 +20,11 @@ function animationloop() {
     backgrounCount++;
   } else {  if(backgrounCount < 3000)
     for (let i = 0; i < 5; i++) {
-      ctx.drawImage(background2, backgroundx+i*canvas.width, 0, canvas.width, canvas.height);//draws background image 5 times
-       
+      ctx.drawImage(background2, backgroundx+i*canvas.width, 0, canvas.width, canvas.height);//draws background image 5 times      
 }
     backgrounCount++;
   }
+  
 
   boxes.forEach((box, x) => {
     box.x-=3
