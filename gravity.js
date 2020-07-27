@@ -106,7 +106,7 @@ function colCheck(shapeA, shapeB) {
 
 
 let songPlaying = false
-const audio = new Audio('lo.mp3');
+const audio = new Audio('lofijump.mp3');
 
 document.body.addEventListener("keydown", function (e) {
 
